@@ -1,0 +1,61 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+
+{% block title %}
+<title>Home : Login</title>
+{% endblock %}
+
+{% block main_content %}
+
+<!-- <div class="d-flex justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center text-success">Users Login Form</h2>
+
+        {% for msg in messages %}
+
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <form action="" method="POST" class="shadow-lg p-3" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="mt-3">
+                <input type="submit" name="submit" class="btn btn-primary" value="Login">
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="container mx-auto col-md-4 card shadow p-5" style="background-color: #f7f7f7; border-radius: 20px; margin-top: 25vh; margin-bottom: 30px;">
+    <div class="login-form">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success {{ message.tags }} mt-4" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="text-center" style="color: #333;">Log In <i class="fal fa-user-lock"></i></h2>
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required style="background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
+            </div>
+            <div class="form-group mt-4">
+                <input type="password" class="form-control" name="password" placeholder="Password" required style="background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
+            </div>
+            <div class="form-group mt-4">
+                <button class="btn btn-success btn-block">Log In <i class="fal fa-user-lock" style="color: #ffdf00;"></i></button>
+            </div>
+        </form>
+        <p class="text-center" style="color: #555;">Don't have an account? <a href="{% url 'register' %}" style="color: #007bff;">Create an Account ➕</a></p>
+    </div>
+</div>
+
+{% endblock %}

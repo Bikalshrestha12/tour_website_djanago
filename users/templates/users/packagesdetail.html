@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+<title>Home: Product</title>
+{% endblock %}
+{% block main_content %}
+
+<style>
+
+    .carousel-item img{
+        height: 400px;
+    }
+    .card-img img:hover{
+      transform: scale(1.5);
+      overflow: hidden;
+    }
+
+    .card-img{
+      overflow: hidden;
+    }
+
+    .card-img img{
+      transition: all 2s;
+      height: 150px;
+    }
+
+
+
+    .img-detail {
+        width: 400px;
+        height: 300px;
+        border-radius: 20px;
+    }
+
+    .img-detail img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+
+    }
+
+    .productdes {
+        background: linear-gradient(to top right, rgb(234, 110, 88), rgb(41, 149, 182));
+        color: white;
+    }
+
+</style>
+
+{% load static %}
+
+
+
+<!-- start of card section  -->
+<div class="container py-5">
+    <span class="bg-info text-danger fw-bold fs-4 py-2 px-4 rounded-pill text-white latest">Product Details</span>
+    <div class="d-flex row justify-content-around mt-3">
+        <div class="col-md-4 img-detail">
+            <img src="/{{products.image}}" alt="{{products.product_name}}" width="100%">
+        </div>
+        <div class="col-md-4 text-center shadow-lg pt-3 productdes rounded">
+            <h3><span>Name : </span>{{products.title}}</h3>
+            <h3><span>Price : </span>Rs. {{products.price}}</h3>
+            {% comment %} <h3><span>Stock : </span>{{products.stock}}</h3> {% endcomment %}
+            {% comment %} <center><a href="{% url 'addtocart' products.id %}" class="btn btn-success">Add to cart</a></center> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- end of card section  -->
+
+
+<div class="container py-5">
+    <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white"> Reletive Product</span>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+        {% for show_destination in destination %}
+        <div class="col">
+            <div class="card shadow-lg">
+                <div class="card-img">
+                    <img src="/{{show_destination.image}}" class="card-img-top" alt="{{show_destination.title}}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{show_destination.title}}</h5>
+                    <p class="card-text">Rs.{{show_destination.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

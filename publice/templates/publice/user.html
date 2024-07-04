@@ -1,0 +1,48 @@
+<!-- user name, email -->
+
+{% extends 'admins/layout.html' %}
+
+
+{% block title %}
+<title>Home: Product</title>
+{% endblock %}
+
+{% block main_content %}
+
+{% load static %}
+
+
+
+<div class="container">
+    <h2 class="text-center text-success"> All User</h2>
+
+    <!-- {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success">
+        {{ msg }}
+    </div>
+    
+    {% endif %}
+    {% endfor %} -->
+    
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <th> User Name</th>
+            <th>Email</th>
+        </thead>
+        {% for show_user in user %}
+        <tr>
+
+            <td>{{show_user.username}}</td>
+            <td>{{show_user.email}}</td>
+            
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

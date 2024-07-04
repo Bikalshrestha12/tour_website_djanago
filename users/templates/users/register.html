@@ -1,0 +1,77 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+
+{% block title %}
+<title>Home : Register</title>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="d-flex justify-content-center" style="margin: 22vh 0 20px;">
+    <div class="col-md-8">
+        <h2 class="text-center text-success">Users Register Form</h2>
+
+        {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <form action="" method="POST" class="shadow-lg p-3" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="mt-3">
+                <input type="submit" name="submit" class="btn btn-primary" value="Register">
+            </div>
+        </form>
+        <p class="text-center">Already have an account? <a href="{% url 'login' %}">Log In ➡️</a></p>
+    </div>
+</div>
+
+<!-- <div class="container mt-5 mx-auto col-md-4 card shadow p-5">
+    <div class="login-form">
+        {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="text-center">Register <i class="fas fa-key fa-xs" style="color: #ffdf01;"></i></h2>
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group mt-4">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group mt-4">
+                <button class="btn btn-success btn-block">Register <i class="fas fa-key fa-xs" style="color: #ffdf01;"></i></button>
+            </div>
+        </form>
+        <p class="text-center">Already have an account? <a href="{% url 'login' %}">Log In ➡️</a></p>
+    </div>
+</div>
+ 
+<style>
+    .card { background-color: #f7f7f7; border-radius: 20px; }
+    .login-form { padding: 20px; }
+    .btn-primary { background-color: #007bff; border-color: #007bff; }
+    .btn-primary:hover { background-color: #0056b3; border-color: #0056b3; }
+    .alert { background-color: #f44336; color: #fff; }
+</style> -->
+
+{% endblock %}

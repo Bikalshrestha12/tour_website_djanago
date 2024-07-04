@@ -1,0 +1,80 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+<title>Home : Gallery</title>
+{% endblock %}
+
+{% block main_content %}
+
+<style>
+.gallery{
+        background: url("https://media3.giphy.com/media/ej7LTlnHqfequvxwT0/200.webp?cid=ecf05e47s713qo1q60spk4jflslyf9379d3vmbpfjlf19k6m&ep=v1_gifs_search&rid=200.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+</style>
+
+<section class="gallery" id="gallery">
+        <div class="container">
+
+          <p class="section-subtitle">Photo Gallery</p>
+
+          <h2 class="h2 section-title">Photo's From Travellers</h2>
+
+          <p class="section-text">
+            Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+            Sit ornare
+            mollitia tenetur, aptent.
+          </p>
+
+          <ul class="gallery-list">
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="/{{tour.image }}" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./assets/images/gallery-2.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./assets/images/gallery-3.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./assets/images/gallery-4.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="https://media3.giphy.com/media/3o6ZtelrVAOD5EcmCQ/200.webp?cid=790b7611uhiloitt7ws6a7zen9jgppjn8vwkhpyoqy05azu3&ep=v1_gifs_search&rid=200.webp&ct=g" alt="Gallery image">
+              </figure>
+            </li> 
+
+          </ul>
+
+        </div>
+      </section>
+
+
+{% endblock %}

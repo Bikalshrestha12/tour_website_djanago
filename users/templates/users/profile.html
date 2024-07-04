@@ -1,0 +1,31 @@
+{% extends 'users/userlayout.html' %}
+
+
+{% block title %}
+<title>Home: User Profile</title>
+{% endblock %}
+{% block main_content %}
+
+
+
+{% load static %}
+
+<!-- {% include 'users/slider.html' %} -->
+
+<!-- start of card section  -->
+<div class="container py-5">
+    <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white"> User Profile</span>
+    <div class="row row-cols-1 md-4 g-4 mt-3">
+        
+        <h1>FirstName : {{user.first_name}}</h1>
+        <h1>LastName : {{user.last_name}}</h1>
+        <h2>Username : {{user.username}}</h2>
+        <h2>Email : {{user.email}}</h2>
+        <span><a href="{% url 'updateprofile' %}" class="btn btn-info text-white">Update Profile</a></span>
+    </div>
+</div>
+
+
+<!-- end of card section  -->
+
+{% endblock %}

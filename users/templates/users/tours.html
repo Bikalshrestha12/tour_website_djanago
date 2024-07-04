@@ -1,0 +1,142 @@
+{% extends 'users/userlayout.html' %}
+
+
+{% block title %}
+<title>Home: Tour</title>
+{% endblock %}
+{% block main_content %}
+
+
+{% load static %}
+
+<style>
+    .package{
+        background: url("https://media1.giphy.com/media/jtVxhUfZvQ6KflynP0/giphy.webp?cid=ecf05e474u1h8ngmaph9eu95a9a9r9vz0oxgicnc63lunugs&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+</style>
+
+<!-- start of card section  -->
+
+
+<section class="package" id="package">
+        <div class="container">
+
+            {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+          <p class="section-subtitle">Popular Packeges</p>
+
+          <h2 class="h2 section-title">Checkout Our Packeges</h2>
+
+          <p class="section-text">
+            Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+            Sit ornare
+            mollitia tenetur, aptent.
+          </p>
+
+          <ul class="package-list">
+            {% for show_tour in tour %}
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="{{show_tour.image}}" alt="{{show_tour.title}}" >
+                </figure>
+
+                <div class="card-content text-start">
+
+                  <h3 class="h3 card-title text-danger">{{show_tour.title}}</h3>
+
+                  <p class="card-text">
+                    {{show_tour.description}}
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">{{show_tour.duration_days}}d</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: {{show_tour.max_person}}</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">{{show_tour.destination}}
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(25 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    {{show_tour.price}}
+                    <span>/ per person</span>
+                  </p>
+
+                  <button class="btn btn-secondary">Book Now</button>
+
+                </div>
+
+              </div>
+            </li>
+            
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+<!-- end of card section  -->
+
+
+{% endblock %}
+
+

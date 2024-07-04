@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+<title>Home: Product</title>
+{% endblock %}
+{% block main_content %}
+
+
+<style>
+    /* .carousel-item{
+      width: 90vh;
+    } */
+    .carousel-item img{
+        /* width: 100%; */
+        height: 400px;
+    }
+    .card-img img:hover{
+      transform: scale(1.5);
+      overflow: hidden;
+    }
+
+    .card-img{
+      overflow: hidden;
+    }
+
+    .card-img img{
+      transition: all 2s;
+      height: 150px;
+    }
+
+</style>
+
+{% load static %}
+
+
+{% include 'users/slider.html' %}
+
+<!-- start of card section  -->
+<div class="container py-5">
+  <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white text-center"> POPULAR DESTINATION</span>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+      {% for show_destination in destination %}
+        <div class="col">
+          <div class="card shadow-lg">
+            <div class="card-img">
+              <img src="/{{show_destination.image}}" class="card-img-top" alt="{{show_destination.name}}">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{show_destination.name}}</h5>
+              <p class="card-text">{{show_destination.location}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+  <!-- end of card section  -->
+
+{% endblock %}

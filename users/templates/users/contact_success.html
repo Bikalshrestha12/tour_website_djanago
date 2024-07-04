@@ -1,0 +1,34 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+<title>Home : Contact Us</title>
+{% endblock %}
+
+{% block main_content %}
+
+    <style>
+        .contact{
+        background: url("https://media4.giphy.com/media/FPjJbmGUVZmC92zO4c/200.webp?cid=790b761144iok33kczclajterfs6lypcrs6ve2iudnypvg13&ep=v1_gifs_search&rid=200.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+    </style>
+    <div class="contact">
+        <h2>Thank You!</h2>
+        <p>Your message has been sent successfully.</p>
+        <a href="{% url 'contact' %}"> Back to Contact_US</a>
+    </div>
+  
+{% endblock %}

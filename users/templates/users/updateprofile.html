@@ -1,0 +1,37 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap %}
+
+{% block title %}
+<title>Home : Update Profile</title>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="d-flex justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center text-success">Update Profile Form</h2>
+
+        {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <form action="" method="POST" class="shadow-lg p-3" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="mt-3">
+                <input type="submit" name="submit" class="btn btn-primary" value="updateprofile">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

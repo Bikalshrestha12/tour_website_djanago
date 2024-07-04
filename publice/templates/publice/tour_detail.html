@@ -1,0 +1,42 @@
+{% extends 'admins/layout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+    <title>Tour Detail</title>
+{% endblock %}
+
+{% block main_content %}
+
+<style>
+    .tour{
+        background: url("https://media4.giphy.com/media/3oKIPxjZBLeNR9RM76/giphy.webp?cid=790b7611pt2av6zvyptxuli05yqrosm26fexrvaoetqn7idl&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+</style>
+
+<div class="tour">
+<h1>{{ tour.title }}</h1>
+<p><strong>Description:</strong> {{ tour.description }}</p>
+<p><strong>Image:</strong> {{ tour.image }}</p>
+<p><strong>Price:</strong> ${{ tour.price }}</p>
+<p><strong>Duration (days):</strong> {{ tour.duration_days }}</p>
+<p><strong>Start Date:</strong> {{ tour.start_date }}</p>
+<p><strong>End Date:</strong> {{ tour.end_date }}</p>
+
+<a href="{% url 'tour_update' tour.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'tour_delete' tour.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'tour_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

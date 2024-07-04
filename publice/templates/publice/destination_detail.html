@@ -1,0 +1,40 @@
+{% extends 'admins/layout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+    <title>Destination Detail</title>
+{% endblock %}
+
+{% block main_content %}
+
+<style>
+    .destination{
+        background: url("https://media4.giphy.com/media/3oKIPxjZBLeNR9RM76/giphy.webp?cid=790b7611pt2av6zvyptxuli05yqrosm26fexrvaoetqn7idl&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+</style>
+
+<div class="destination">
+<h1>{{ destination.name }}</h1>
+<p><strong>Description:</strong> {{ destination.description }}</p>
+<p><strong>Image:</strong> {{ destination.image }}</p>
+<p><strong>Location:</strong> {{ destination.location }}</p>
+
+
+{% comment %} <a href="{% url 'destination_update' '(destination.name)' %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'destination_delete' '(destination.name)' %}" class="btn btn-danger">Delete</a> {% endcomment %}
+<a href="{% url 'destination_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

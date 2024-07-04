@@ -1,0 +1,144 @@
+{% extends 'users/userlayout.html' %}
+
+
+{% block title %}
+<title>Home: Destination</title>
+{% endblock %}
+
+
+
+{% block main_content %}
+<style>
+  .popular {
+    background-image: url("https://media4.giphy.com/media/aQwpiRR66oMIAPaPLf/giphy.webp?cid=ecf05e47vxlm4ov68xspgpz89cvumy8ndi7syj9w4did33i9&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    background-blend-mode: overlay;
+    display: grid;
+    place-items: center;
+    min-height: 600px;
+    text-align: center;
+    padding-top: 125px;
+  }
+  
+  </style>
+
+<section class="popular" id="destination">
+        <div class="container">
+
+          <p class="section-subtitle">Uncover place</p>
+
+          <h2 class="h2 section-title text-white">Popular destination</h2>
+
+          <p class="section-text text-white-50">
+            Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+            Sit ornare
+            mollitia tenetur, aptent.
+          </p>
+          {% for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+        {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+        {% endif %}
+        {% endfor %}
+        <!-- <form action="" method="get" class="search mt-3 d-flex align-items-center py-3">
+          {{product_filter.form}}
+          <input type="submit" value="search" class="btn btn-primary ms-3">
+        </form> -->
+
+          <ul class="popular-list">
+          
+
+            {% for show_destination in destination %}
+            <li>
+            
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <img src="/{{show_destination.image}}" alt="{{show_destination.name}}" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+                  <div class="center">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <span>{{show_destination.location}}</span>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <span>{{show_destination.name}}</span>
+                  </h3>
+
+                  <p class="card-text">
+                    {{show_destination.description}}
+                  </p>
+
+                  <a href="#" class="btn btn-primary">More information </a>
+                  </div>
+                </div>
+                
+              </div>
+
+            </li>
+          
+            {% endfor %}
+            </ul>
+
+          
+
+        </div>
+      </section>
+
+
+      <!-- <div class="container py-5">
+
+        {% for msg in messages %}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+            {% elif msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+        <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white"> All Product </span>
+        <form action="" method="get" class="search mt-3 d-flex align-items-center">
+            {{product_filter.form}}
+            <input type="submit" value="search" class="btn btn-primary ms-3">
+        </form>
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+            {% for show_product in products %}
+            <div class="col">
+                <div class="card shadow-lg">
+                    <div class="card-img">
+                        <img src="/{{show_product.image}}" class="card-img-top" alt="{{show_product.name}}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{show_product.name}}</h5>
+                        <p class="card-text">Rs.{{show_product.description}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div> -->
+{% endblock %}

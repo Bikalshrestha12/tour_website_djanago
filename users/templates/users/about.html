@@ -1,0 +1,162 @@
+{% extends 'users/userlayout.html' %}
+{% load crispy_forms_tags %}
+{% comment %} {% load bootstrap %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+<title>Home : About Us</title>
+{% endblock %}
+
+{% block main_content %}
+<style>
+    .abouts{
+        background: url("https://media2.giphy.com/media/f6qMGmXuOdkwU/giphy.webp?cid=ecf05e47xeqv5a41by3ehowc30nph9cldkwlhxwt9sufydd4&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+    }
+    .abouts h1{
+        margin-top: 20vh;
+    }
+
+    
+.about-us {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 90px 0;
+    /* background: #fff; */
+}
+.pic {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+.about {
+    width: 1130px;
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.text {
+    width: 540px;
+}
+/* .text h2 {
+    color: rgba(245, 245, 245, 0.817);
+    font-size: 90px;
+    font-weight: 600;
+    margin-bottom: 10px;
+} */
+.text h4 {
+    color: rgba(245, 245, 245, 0.695);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+/* span {
+    color: #4070f4;
+} */
+.text p {
+    color: rgba(245, 245, 245, 0.525);
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 1px;
+}
+.data {
+    margin-top: 30px;
+}
+.hire {
+    font-size: 18px;
+    background: #4070f4;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    transition: 0.5s;
+}
+.hire:hover {
+    background: #000;
+}
+</style>
+<!-- https://www.travala.com/blog/meet-the-travalacom-team/ -->
+<section class="abouts" id="about">
+    <h1 class="text-white">Meet the Travala.com Team</h1>
+    <p class="text-white-50">Behind every great brand is a team of experienced, dedicated, and passionate professionals, and Travala.com is no different.</p>
+
+    <h2 class="text-white-50 mt-5">Executive/ Management Team</h2>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Juan Otero – Co-Founder & CEO</h4>
+            <p>With a wealth of experience in some of the largest tech companies in the world including Oracle and Booking.com, Juan is responsible for overseeing and driving all Travala.com operations, business activities and resources and for ensuring that all corporate decisions align with the overall strategy and mission.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Matthew Stevens – CFO</h4>
+            <p>A Chartered Accountant and London Business School MBA, Matt has over 10 years experience in accounting and finance. He has worked in a variety of roles in M&A advisory and business valuations, investment management, and venture capital. Matt is responsible for Travala.com accounting and reporting that supports management decision-making.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Sam Woollard – CMO </h4>
+            <p>A veteran of the travel tech space with over 20 years’ experience with household names such as Accor Plus, British Airways and Qatar Airways, Sam has joined the Travala.com team to lead the company’s marketing strategy and spearhead our next growth phase.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Kent Pham – CTO</h4>
+            <p>As Travala.com‘s executive lead for Technologies and Operations, Kent is responsible for outlining the technological vision, implementing technology strategies and ensuring that technological resources meet the company’s short and long-term needs.</p>
+          </div>
+        </div>
+    </section>
+
+    <h2 class="text-white-50 mt-5">Marketing Team</h2>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Rob Angus – Performance Marketing Manager</h4>
+            <p>Rob has over 14 years’ experience in marketing, having developed and implemented the marketing strategy for many local, national and global brands. He’s specialized in the travel industry for the last 6 years, including areas such as online retail, loyalty and closed-user travel brands.</p>
+          </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="about">
+          <img src="{% static 'img\Hue-Saturation 03.jpg' %}" class="pic" />
+          <div class="text">
+            <h4>Julia Nguyen – Content Manager</h4>
+            <p>An experienced digital marketer, Julia is responsible for Travala.com website content development, SEO and SEM activities, email marketing along with conversion optimization.</p>
+          </div>
+        </div>
+    </section>
+
+</section>
+{% endblock %}
