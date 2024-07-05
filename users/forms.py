@@ -43,3 +43,6 @@ class ProfileUpdateForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
         self.fields.pop("password", None)
+
+# class GalleryForm(forms.Form):
+#     image = forms.ImageField()

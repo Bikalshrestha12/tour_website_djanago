@@ -135,22 +135,6 @@ def logout_user(request):
     return redirect("/")
 
 
-# def booking_form(request, tour_id):
-#     # tour = Tour.objects.get(id=tour_id)
-#     if request.method == "POST":
-#         form = BookingForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.add_message(
-#                 request, messages.SUCCESS, "Booking successfully."
-#             )
-            
-#             return redirect("booking_list")
-#     else:
-#         messages.add_message(request, messages.ERROR, "Kindly check all the field.")
-#         return render(request, "users/booking_form.html", {"form": form})
-#     return render(request, "user/booking_form.html", {"form": BookingForm})
-
 
 
 def about_us(request):
@@ -162,10 +146,9 @@ def about_us(request):
     return render(request, "users/about.html", context)
 
 def gallery(request):
-    user = request.user.id
-    tour = Tour.objects.filter()
+    gallery = Destination.objects.all()
     context = {
-        'tour':tour
+        'gallery':gallery
     }
     return render(request, "users/gallery.html", context)
 

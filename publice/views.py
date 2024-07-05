@@ -1,11 +1,9 @@
-from django.shortcuts import render
-
-# Create your views here.
 
 from django.shortcuts import render, redirect
 from django.http import *
 from .models import *
 from .forms import *
+from users.forms import *
 
 # from users.forms import *
 from django.contrib import messages
@@ -22,6 +20,8 @@ import hmac  # cryptography algorithm
 import hashlib  # encrypt data
 import uuid  # to generate random string
 import base64
+
+# Create your views here.
 
 
 # class EsewaView(View):
@@ -138,9 +138,7 @@ def tour_delete(request, pk):
 @admin_only
 def destination_list(request):
     destination = Destination.objects.all()
-    return render(
-        request, "publice/destination_list.html", {"destination": destination}
-    )
+    return render(request, "publice/destination_list.html", {"destination": destination})
 
 
 @login_required
@@ -168,12 +166,12 @@ def destination_create(request):
 @login_required
 @admin_only
 def destination_update(request, name):
-    destination = destination.objects.get(name=name)
+    destination = Destination.objects.get(name=name)
     if request.method == "POST":
         form = DestinationForm(request.POST, request.FILES, instance=destination)
         if form.is_valid():
             form.save()
-            return redirect("tour_list")
+            return redirect("destination_list")
     else:
         form = DestinationForm(instance=destination)
     return render(request, "publice/destination_form.html", {"form": form})
@@ -186,9 +184,7 @@ def destination_delete(request, pk):
     if request.method == "POST":
         destination.delete()
         return redirect("destination_list")
-    return render(
-        request, "publice/destination_delete.html", {"destination": destination}
-    )
+    return render( request, "publice/destination_delete.html", {"destination": destination})
 
 
 def book_tour(request, tour_id):
@@ -200,7 +196,8 @@ def book_tour(request, tour_id):
         if form.is_valid():
             num_travelers = request.POST.get("num_travelers")
             price = tour.price
-            total_cost = int(num_travelers) * int(price)
+            duration_days = tour.duration_days
+            total_cost = int(num_travelers) * int(price) *int(duration_days)
             contact_no = request.POST.get("contact_no")
             address = request.POST.get("address")
             payment_method = request.POST.get("payment_method")
@@ -230,3 +227,28 @@ def user(request):
     user = User.objects.all()
     context = {"user": user}
     return render(request, "publice/user.html", context)
+
+
+def gallery_list(request):
+    gallery = Gallery.objects.all()
+    return render(request, "publice/gallery_list.html", {"gallery": gallery})
+
+def gallery_form(request):
+    if request.method == 'POST':
+        form = GalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # instance = form.save()
+            return redirect("gallery_list")
+    else:
+        form = GalleryForm()
+    return render(request, "publice/gallery_form.html", {"form": form})
+
+@login_required
+@admin_only
+def gallery_delete(request, pk):
+    gallery = Gallery.objects.get(pk=pk)
+    if request.method == "POST":
+        gallery.delete()
+        return redirect("gallery_list")
+    return render( request, "publice/gallery_delete.html", {"gallery": gallery})

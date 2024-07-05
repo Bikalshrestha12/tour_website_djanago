@@ -76,3 +76,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Gallery(models.Model):
+    image = models.ImageField(upload_to="static/gallery")

@@ -40,37 +40,16 @@
           </p>
 
           <ul class="gallery-list">
+          {% for gallery in gallery %}
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="/{{tour.image }}" alt="Gallery image">
+                <img src="/{{gallery.image }}" alt="Gallery image">
               </figure>
             </li>
 
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-2.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-3.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-4.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="https://media3.giphy.com/media/3o6ZtelrVAOD5EcmCQ/200.webp?cid=790b7611uhiloitt7ws6a7zen9jgppjn8vwkhpyoqy05azu3&ep=v1_gifs_search&rid=200.webp&ct=g" alt="Gallery image">
-              </figure>
-            </li> 
-
+            
+            {% endfor %}
           </ul>
 
         </div>
