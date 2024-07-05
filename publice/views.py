@@ -229,10 +229,15 @@ def user(request):
     return render(request, "publice/user.html", context)
 
 
+@login_required
+@admin_only
 def gallery_list(request):
     gallery = Gallery.objects.all()
     return render(request, "publice/gallery_list.html", {"gallery": gallery})
 
+
+@login_required
+@admin_only
 def gallery_form(request):
     if request.method == 'POST':
         form = GalleryForm(request.POST, request.FILES)
