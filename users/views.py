@@ -19,41 +19,58 @@ from django.shortcuts import get_object_or_404
 # ## tours/views
 ### ------------- ###
 
-def homepage(request):
-    destination = Destination.objects.all().order_by("-id")[:8]
-    user = request.user.id
-    tour = Tour.objects.filter()
 
-    context = {"destination": destination, "tour": tour}
+
+
+def homepages(request):
+    destination = Destination.objects.all().order_by("-id")[:8]
+    homepages = HomePage.objects.all()
+    user = request.user.id
+    review = Review.objects.filter(user=user)
+
+    context = {"destination": destination, "review": review, "homepages":homepages}
     return render(request, "users/index.html", context)
 
 
 def destinationpage(request):
     user = request.user.id
-    tour = Tour.objects.filter()
-    destination = Destination.objects.all().order_by("-id")
+    review = Review.objects.filter(user=user)
+    destination = Tour.objects.all().order_by("-id")
     destination_filter = DestinationFilter(request.GET, queryset=destination)
     destination_result = destination_filter.qs
 
     context = {
         "destination_filter": destination_filter,
         "destination": destination_result,
-        "tour": tour,
+        "review": review,
     }
     return render(request, "users/destination.html", context)
+
+def destinationdetail(request, tour_id):
+    user = request.user.id
+    review = Review.objects.filter(user=user)
+    destinations = Tour.objects.get(id=tour_id)
+    destination = Tour.objects.all().order_by("-id")[:4]
+
+    context = {"destinations": destinations, 
+               "destination": destination,
+               "review": review,
+            }
+    
+    return render(request, "users/destinationdetail.html", context)
 
 
 def packages(request):
     user = request.user.id
-    tour = Tour.objects.filter()
-    destination = Destination.objects.all().order_by("-id")
-    destination_filter = DestinationFilter(request.GET, queryset=destination)
-    destination_result = destination_filter.qs
+    review = Review.objects.filter(user=user)
+    tour = Tour.objects.all().order_by("-id")
+    tour_filter = TourFilter(request.GET, queryset=tour)
+    tour_result = tour_filter.qs
 
     context = {
-        "destination_filter": destination_filter,
-        "destination": destination_result,
-        "tour": tour,
+        "tour_filter": tour_filter,
+        "tour": tour_result,
+        "review": review,
     }
     return render(request, "users/packages.html", context)
 
@@ -69,31 +86,30 @@ def packages(request):
 #     return render(request, "users/packages.html", context)
 
 
-def packagesdetail(request, destination_id):
+def packgesdetail(request, tour_id):
     user = request.user.id
-    tour = Tour.objects.filter(user=user)
-    destinations = Destination.objects.get(Destination, id=destination_id)
-    destination = Destination.objects.all().order_by("-id")[:4]
+    review = Review.objects.filter(user=user)
+    tours = Tour.objects.get(id=tour_id)
+    tour = Tour.objects.all().order_by("-id")[:4]
 
-    context = {"destinations": destinations, 
-               "destination": destination, 
-               "tour": tour
+    context = {"tours": tours, 
+               "tour": tour,
+               "review": review,
             }
     
     return render(request, "users/packagesdetail.html", context)
 
 
 
-
 def register(request):
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.add_message(
                 request, messages.SUCCESS, "User register successfully."
             )
-            return redirect("/users/register")
+            return redirect("/login")
         else:
             messages.add_message(request, messages.ERROR, "Kindly check all the field.")
             return render(request, "users/register.html", {"form": form})
@@ -117,7 +133,7 @@ def login_user(request):
                     return redirect("/admins")
                 else:
                     return redirect("/")
-                return redirect("/products/products")
+                return redirect("/publice/publice")
             else:
                 messages.add_message(
                     request, messages.ERROR, "Please provide correct credential"
@@ -139,16 +155,22 @@ def logout_user(request):
 
 def about_us(request):
     user = request.user.id
-    tour = Tour.objects.filter()
+    review = Review.objects.filter(user=user)
+    about = About_Us.objects.all()
     context = {
-        "tour": tour,
+        "about": about,
+        "review":review,
     }
     return render(request, "users/about.html", context)
 
+
 def gallery(request):
-    gallery = Destination.objects.all()
+    user = request.user.id
+    review = Review.objects.filter(user=user)
+    gallery = Gallery.objects.all()
     context = {
-        'gallery':gallery
+        'gallery':gallery,
+        'review':review
     }
     return render(request, "users/gallery.html", context)
 
@@ -190,3 +212,90 @@ def contact_view(request):
 
 def contact_success_view(request):
     return render(request, 'users/contact_success.html')  # Replace 'users/contact_success.html' with your actual template path
+
+
+@login_required
+def profile(request):
+    user = User.objects.get(username=request.user)
+    profile = Profile.objects.all()
+    context = {"profile": profile, "user":user}
+    return render(request, "users/profile.html", context)
+
+
+
+@login_required
+def update_profile(request):
+    if request.method == "POST":
+        form = ProfileUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.add_message(
+                request, messages.SUCCESS, "Profile update Successfully"
+            )
+            return redirect("/users/profile")
+        else:
+            messages.add_message(request, messages.ERROR, "Failed to update profile")
+            return render(request, "users/updateprofile.html", {"form": form})
+
+    context = {"form": ProfileUpdateForm(instance=request.user)}
+
+    return render(request, "users/updateprofile.html", context)
+
+
+
+
+
+# def inquire(request):
+#     user = request.user.id
+#     review = Review.objects.filter(user=user)
+#     inquire = Inquire.objects.all()
+#     context = {
+#         "homepages": homepages,
+#         "review":review,
+#     }
+#     return render(request, "users/index.html", context)
+
+def inquire(request):
+    if request.method == 'POST':
+        form = InquireForm(request.POST)
+        if form.is_valid():
+
+            return redirect('/inquireresult')  # Redirect to a success page
+
+    else:
+        form = InquireForm()
+
+    return render(request, 'users/tnquirersult.html', {'form': form})
+
+
+# from django.views.static import serve
+# from django.conf import settings
+# from django.utils.http import http_date
+# from django.http import HttpResponseNotModified, Http404
+# import os
+
+# def serve_with_cache(request, path):
+#     absolute_path = os.path.join(settings.STATIC_ROOT, path)
+#     if not os.path.exists(absolute_path):
+#         raise Http404("File not found")
+
+#     # Get the last modified time of the file
+#     statobj = os.stat(absolute_path)
+#     last_modified = http_date(statobj.st_mtime)
+
+#     if_modified_since = request.META.get('HTTP_IF_MODIFIED_SINCE')
+#     if if_modified_since == last_modified:
+#         return HttpResponseNotModified()
+
+#     response = serve(request, path)
+#     response['Last-Modified'] = last_modified
+#     return response
+
+# from django.http import HttpResponse
+# from django.views.decorators.http import etag
+
+# @etag(lambda x: 'etag_value')  # Replace with your etag generation function
+# def my_view(request):
+#     response = HttpResponse()
+#     # Set some content
+#     return response

@@ -1,0 +1,62 @@
+<!-- user name, email -->
+
+{% extends 'admins/layout.html' %}
+
+
+{% block title %}
+<title>Home: Travel Booking</title>
+{% endblock %}
+
+{% block main_content %}
+
+{% load static %}
+
+
+
+<div class="container">
+    <h2 class="text-center text-success"> All Booking</h2>
+
+    <!-- {% for msg in messages %}
+    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success">
+        {{ msg }}
+    </div>
+    
+    {% endif %}
+    {% endfor %} -->
+    
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <th> User Name</th>
+            <th>Booked Date</th>
+            <th>booking date</th>
+            <th>Total travelers</th>
+            <th>tour </th>
+            <th>contact_no</th>
+            <th>total_cost</th>
+            <th>payment_method</th>
+            <th>status </th>
+            <th> Action </th>
+        </thead>
+        {% for show_book in booking %}
+        <tr>
+
+            <td>{{show_book.user}}</td>
+            <td>{{show_book.date_booked}}</td>
+            <td>{{show_book.booking_date}}</td>
+            <td>{{show_book.num_travelers}}</td>
+            <td>{{show_book.tour}}</td>
+            <td>{{show_book.contact_no}}</td>
+            <td>{{show_book.total_cost}}</td>
+            <td>{{show_book.payment_method}}</td>
+            <td>{{show_book.status}}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

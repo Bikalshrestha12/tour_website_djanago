@@ -1,0 +1,44 @@
+{% extends 'admins/layout.html' %} 
+{% load crispy_forms_tags %} 
+{% comment %} {% load bootstrap%} {% endcomment %} 
+{% load static %} 
+
+{% block title %}
+<title>Create/About Us</title>
+{% endblock %} 
+
+{% block main_content %}
+
+<style>
+  .tour {
+    background: url("https://media4.giphy.com/media/3oKIPxjZBLeNR9RM76/giphy.webp?cid=790b7611pt2av6zvyptxuli05yqrosm26fexrvaoetqn7idl&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    background-blend-mode: overlay;
+    display: grid;
+    place-items: center;
+    min-height: 600px;
+    text-align: center;
+    padding-top: 125px;
+    color: white;
+  }
+</style>
+
+<div class="tour">
+  <h1>
+    About Us
+  </h1>
+
+  <form method="POST" enctype="multipart/form-data" class="my-3">
+    {% csrf_token %} 
+    {{ form|crispy }}
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'about_us_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+{% endblock %}

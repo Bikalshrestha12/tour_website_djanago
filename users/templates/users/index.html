@@ -2,17 +2,13 @@
 
 
 {% block title %}
-<title>Home: Product</title>
+<title>Home</title>
 {% endblock %}
 {% block main_content %}
 
 
 <style>
-    /* .carousel-item{
-      width: 90vh;
-    } */
-    .carousel-item img{
-        /* width: 100%; */
+.carousel-item img{
         height: 400px;
     }
     .card-img img:hover{
@@ -29,6 +25,36 @@
       height: 150px;
     }
 
+
+
+    .img-detail {
+        width: 400px;
+        height: 300px;
+        border-radius: 20px;
+    }
+
+    .img-detail img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+
+    }
+    
+  .hero {
+    {% for homepages in homepages %}
+    background-image: url("/{{homepages.image}}");
+    {% endfor %}
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    background-blend-mode: overlay;
+    display: grid;
+    place-items: center;
+    min-height: 600px;
+    text-align: center;
+    padding-top: 125px;
+  }
 </style>
 
 {% load static %}

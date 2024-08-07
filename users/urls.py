@@ -2,11 +2,12 @@ from django.urls import path
 from . views import *
 
 urlpatterns = [
-    
-    path('', homepage, name='homepage'),
+    path('', homepages, name='homepage'),
     path('destination/', destinationpage, name="destination"),
     path('packages/', packages, name="packages"),
-    path('packagesdetail/<int:tour_id>/', packagesdetail, name="packagesdetail"),
+    # path('destinationdetail/<str:destination_name>/', destinationdetail, name='destinationdetail'),
+    path('destinationdetail/<int:tour_id>/', destinationdetail, name="destinationdetail"),
+    path('packgesdetail/<int:tour_id>/', packgesdetail, name="packgesdetail"),
     path('register/', register, name="register"),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name="logout"),
@@ -14,5 +15,8 @@ urlpatterns = [
     path('contact/', contact_view, name="contact"),
     path('contact_success/', contact_success_view, name="contact_success"),  # Add this line
     path('gallery/', gallery, name="gallery"),
-
+    path('upprofile/', profile, name="upprofile"),
+    path('updateprofile/', update_profile, name="updateprofile"),
+    # path('slider/', slider, name="slider"),
 ]
+

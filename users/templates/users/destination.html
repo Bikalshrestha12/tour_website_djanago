@@ -1,4 +1,4 @@
-{% extends 'users/userlayout.html' %}
+{% extends 'layout.html' %}
 
 
 {% block title %}
@@ -23,7 +23,7 @@
     padding-top: 125px;
   }
   
-  </style>
+</style>
 
 <section class="popular" id="destination">
         <div class="container">
@@ -52,7 +52,10 @@
           {{product_filter.form}}
           <input type="submit" value="search" class="btn btn-primary ms-3">
         </form> -->
-
+          <form action="" method="get" class="search mt-3 d-flex align-items-center my-5 text-white">
+            {{destination_filter.form}}
+            <input type="submit" value="search" class="btn btn-primary ms-3">
+          </form>
           <ul class="popular-list">
           
 
@@ -88,7 +91,7 @@
                     {{show_destination.description}}
                   </p>
 
-                  <a href="#" class="btn btn-primary">More information </a>
+                  <a href="{% url 'destinationdetail' show_destination.id %}" class="btn btn-primary">More information </a>
                   </div>
                 </div>
                 

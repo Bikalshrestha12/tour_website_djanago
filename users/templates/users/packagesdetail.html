@@ -2,7 +2,7 @@
 
 
 {% block title %}
-<title>Home: Product</title>
+<title>Home: Packagesdetail</title>
 {% endblock %}
 {% block main_content %}
 
@@ -53,16 +53,17 @@
 
 <!-- start of card section  -->
 <div class="container py-5">
-    <span class="bg-info text-danger fw-bold fs-4 py-2 px-4 rounded-pill text-white latest">Product Details</span>
+    <span class="bg-info text-danger fw-bold fs-4 py-2 px-4 rounded-pill text-white latest text-center my-5">Packages Details</span>
     <div class="d-flex row justify-content-around mt-3">
         <div class="col-md-4 img-detail">
-            <img src="/{{products.image}}" alt="{{products.product_name}}" width="100%">
+            <img src="/{{tours.image}}" alt="{{tours.name}}" width="100%">
         </div>
         <div class="col-md-4 text-center shadow-lg pt-3 productdes rounded">
-            <h3><span>Name : </span>{{products.title}}</h3>
-            <h3><span>Price : </span>Rs. {{products.price}}</h3>
+            <h3><span>Name : </span>{{tours.name}}</h3>
+            <h3><span>Location : </span>{{tours.location}}</h3>
             {% comment %} <h3><span>Stock : </span>{{products.stock}}</h3> {% endcomment %}
             {% comment %} <center><a href="{% url 'addtocart' products.id %}" class="btn btn-success">Add to cart</a></center> {% endcomment %}
+            <a href="{% url 'booktour' tours.id %}" class="btn btn-secondary">Book Now</a>
         </div>
     </div>
 </div>
@@ -74,7 +75,7 @@
 
 
 <div class="container py-5">
-    <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white"> Reletive Product</span>
+    <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white text-center"> Reletive Tour Packages</span>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
         {% for show_destination in destination %}
         <div class="col">

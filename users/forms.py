@@ -35,10 +35,17 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
 
 
+class InquireForm(forms.Form):
+    class Meta:
+        model = Inquire
+        fields = "__all__"
+
+        
+
 class ProfileUpdateForm(UserChangeForm):
     class Meta:
-        model = User
-        fields = ["first_name", "last_name", "email"]
+        model = Profile
+        fields = ["firstname","lastname","phone_number", "email_address", "address", "citizenship", "passport", "password"]
 
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
@@ -46,3 +53,11 @@ class ProfileUpdateForm(UserChangeForm):
 
 # class GalleryForm(forms.Form):
 #     image = forms.ImageField()
+
+
+
+class TourFilterForm(forms.Form):
+    price = forms.MultipleChoiceField(
+        choices=[('0-2000', '0 to 2000'), ('2000-10000', '2000 to 10000'), ('10000-above', '10000 and above')],
+        required=False
+    )

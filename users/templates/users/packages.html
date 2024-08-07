@@ -1,4 +1,4 @@
-{% extends 'users/userlayout.html' %}
+{% extends 'layout.html' %}
 
 
 {% block title %}
@@ -24,14 +24,14 @@
         padding-top: 125px;
         color: white;
     }
-</style>
+</style> 
 
 <!-- start of card section  -->
 
 
 <section class="package" id="package">
         <div class="container">
-
+        
             {% for msg in messages %}
         {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
         <div class="alert alert-success">
@@ -53,6 +53,20 @@
             Sit ornare
             mollitia tenetur, aptent.
           </p>
+          <form action="" method="get" class="search mt-3 d-flex align-items-center my-5 ">
+            {{tour_filter.form}}
+            <input type="submit" value="search" class="btn btn-primary ms-3">
+          </form> 
+
+          <!-- Assuming you are using a template named 'tours/tour_list.html' -->
+{% comment %} {% for tour in tours %}
+    <div>
+        <h2>{{ tour.name }}</h2>
+        <p>Price: {{ tour.price }}</p>
+    </div>
+{% empty %}
+    <p>No tours available for the selected price ranges.</p>
+{% endfor %} {% endcomment %}
 
           <ul class="package-list">
             {% for show_tour in tour %}
@@ -122,7 +136,7 @@
                     <span>/ per person</span>
                   </p>
 
-                  <a href="{% url 'booktour' show_tour.id %}" class="btn btn-secondary">Book Now</a>
+                  <a href="{% url 'packgesdetail' show_tour.id %}" class="btn btn-secondary">Book Now</a>
 
                 </div>
 

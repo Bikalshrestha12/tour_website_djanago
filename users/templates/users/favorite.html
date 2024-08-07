@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+<title>Home: Book</title>
+{% endblock %}
+{% block main_content %}
+
+
+
+{% load static %}
+
+<style>
+    .book{
+        background: url("https://media1.giphy.com/media/jtVxhUfZvQ6KflynP0/giphy.webp?cid=ecf05e474u1h8ngmaph9eu95a9a9r9vz0oxgicnc63lunugs&ep=v1_gifs_search&rid=giphy.webp&ct=g");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: hsla(0, 0%, 0%, 0.7);
+        background-blend-mode: overlay;
+        display: grid;
+        place-items: center;
+        min-height: 600px;
+        text-align: center;
+        padding-top: 125px;
+        color: white;
+    }
+</style>
+
+<div class="book">
+<div class="container py-5">
+    <span class="bg-warning text-danger fs-2 py-3 px-5  rounded-pill text-white text-center"> My Book</span>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            {% for s in item %}
+            <tr>
+
+                <td>{{s.tour.destination}}</td>
+                <td>{{s.tour.price}}</td>
+                <td><img src="/{{s.tour.image}}" alt="{{s.tour.destination}}" width="100px"></td>
+                <td>{{s.status}}</td>
+                <td class="d-flex align-item-center">
+                    <a href="{% url 'booktour' s.tour.id %}">
+                        <button class="btn btn-success border-0 mx-3">Book Now</button>
+                    </a>
+                    <a href="{% url 'removebook' s.id %}" onclick="return alert('Are you sure wanna delete ?')"><i
+                        class="fas fa-trash-alt fs-2 text-danger"></i></a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

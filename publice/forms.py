@@ -17,9 +17,20 @@ class TourForm(ModelForm):
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ["num_travelers", "total_cost", "contact_no", "address", "payment_method"]
+        fields = ["num_travelers",  "contact_no", "address", "booking_date", "payment_method"]
 
 class GalleryForm(ModelForm):
     class Meta:
         model = Gallery
         fields = ['image']
+
+class About_Us_Form(ModelForm):
+    class Meta:
+        model = About_Us
+        fields = "__all__"
+
+class HomePage_Form(ModelForm):
+    class Meta:
+        model = HomePage
+        fields = "__all__"
+

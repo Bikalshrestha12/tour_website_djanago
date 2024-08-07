@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{% static 'user/style.css' %}" />
 
-<style>
+{% comment %} <style>
   .hero {
     background-image: url("https://media3.giphy.com/media/N7ZiLbtDr84Yo/200.webp?cid=ecf05e47nzc1oxu8pjauch5jhj5psls61w2ye2l6za6s60mw&ep=v1_gifs_search&rid=200.webp&ct=g");
     background-repeat: no-repeat;
@@ -16,9 +16,9 @@
     text-align: center;
     padding-top: 125px;
   }
-</style>
+</style> {% endcomment %}
 
-<section class="hero" id="home">
+{% comment %} <section class="hero" id="home">
   <div class="container">
     <h2 class="h1 hero-title">Journey to explore world</h2>
 
@@ -34,7 +34,25 @@
       <a href="{% url 'packages' %}" class="btn btn-secondary">Book now</a>
     </div>
   </div>
+</section> {% endcomment %}
+
+{% for homepages in homepages %}
+
+<section class="hero" id="home">
+  <div class="container">
+    <h2 class="h1 hero-title">{{homepages.title}}</h2>
+
+    <p class="hero-text">{{homepages.text}}</p>
+
+    <div class="btn-group">
+      <a href="{% url 'destination' %}" class="btn btn-primary">Learn more</a>
+
+      <a href="{% url 'packages' %}" class="btn btn-secondary">Book now</a>
+    </div>
+  </div>
 </section>
+
+{% endfor %}
 
 <div id="carouselExample" class="carousel slide">
   <!-- <div class="carousel-inner">
@@ -57,6 +75,4 @@
       <span class="visually-hidden">Next</span>
     </button> -->
 </div>
-<script>
-  var video = document.getElementById("myVideo");
-</script>
+
